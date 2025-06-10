@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Paper Presentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#002f7a',
+                        secondary: '#36D399',
+                        accent: '#FF6B35',
+                        dark: '#1E293B',
+                        'neutral-50': '#F9FAFB',
+                        'neutral-100': '#F3F4F6',
+                        'neutral-200': '#E5E7EB',
+                        'neutral-300': '#D1D5DB',
+                        'neutral-400': '#9CA3AF',
+                        'neutral-500': '#6B7280',
+                        'neutral-600': '#4B5563',
+                        'neutral-700': '#374151',
+                        'neutral-800': '#1F2937',
+                        'neutral-900': '#111827',
+                    },
+                    fontFamily: {
+                        sans: ['Jost', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-balance {
+                text-wrap: balance;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .transition-transform-opacity {
+                transition-property: transform, opacity;
+            }
+            .content-width {
+                max-width: 60vw;
+            }
+            .btn-link {
+                @apply px-5 py-3 rounded-md transition-all duration-300 text-white font-medium inline-flex items-center gap-2;
+            }
+            .btn-link-primary {
+                @apply bg-primary hover:bg-primary/90 focus:ring-4 focus:ring-primary/30 shadow-md hover:shadow-lg transform hover:-translate-y-0.5;
+            }
+            .btn-link-secondary {
+                @apply bg-neutral-800 hover:bg-neutral-700 focus:ring-4 focus:ring-neutral-600/30 shadow-md hover:shadow-lg transform hover:-translate-y-0.5;
+            }
+            .carousel-slide {
+                @apply absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out;
+            }
+            .carousel-slide.active {
+                @apply opacity-100;
+            }
+            .carousel-indicator {
+                @apply w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-colors duration-300 cursor-pointer;
+            }
+            .carousel-indicator.active {
+                @apply bg-white;
+            }
+            .paper-info-card {
+                @apply flex items-center bg-neutral-100 px-6 py-4 rounded-xl shadow-sm w-full md:w-auto;
+            }
+            .paper-info-icon {
+                @apply w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary text-xl;
+            }
+            .paper-info-content {
+                @apply ml-4;
+            }
+            .paper-info-title {
+                @apply text-neutral-900 font-medium text-sm;
+            }
+            .paper-info-detail {
+                @apply text-neutral-600 text-sm;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-neutral-800 min-h-screen flex flex-col items-center">
+    <header class="py-16 px-4 w-full flex justify-center">
+        <div class="content-width mx-auto text-center">
+            <h1 id="paper-title" class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-neutral-900 mb-6 text-balance leading-tight font-sans">
+                Advances in Deep Learning for Natural Language Processing
+            </h1>
+            <div id="paper-authors" class="text-xl text-neutral-600 mb-3 font-sans">
+                Zhang San<sup>1</sup>, Li Si<sup>2</sup>, Wang Wu<sup>1,3</sup>
+            </div>
+            <div class="text-neutral-500 text-sm mb-8 font-sans">
+                <sup>1</sup>University of Technology, <sup>2</sup>Academy of Sciences, <sup>3</sup>AI Research Center
+            </div>
+            
+            <div class="flex justify-center space-x-6 text-base">
+                <a href="#" id="github-link" class="btn-link btn-link-secondary">
+                    <i class="fa fa-github"></i>
+                    <span>GitHub Repository</span>
+                </a>
+                <a href="#" id="arxiv-link" class="btn-link btn-link-primary">
+                    <i class="fa fa-file-text-o"></i>
+                    <span>View on arXiv</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow content-width mx-auto px-4 py-16">
+        <div id="content-container" class="space-y-20">
+            <!-- Content will be dynamically rendered by JavaScript -->
+        </div>
+    </main>
+
+    <footer class="bg-neutral-900 text-white py-12 px-4 w-full flex justify-center">
+        <div class="content-width mx-auto text-center">
+            <div class="mt-6 space-x-6">
+                <a href="#" class="hover:text-primary transition-colors duration-300 text-xl">
+                    <i class="fa fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Configuration data
+        const paperConfig = {
+            title: "SkipVAR: Accelerating Visual Autoregressive Modeling via Adaptive Frequency-Aware Skipping",
+            authors: "Jiajun Li, Yue Ma, Xinyu Zhang, Qingyan Wei, Songhua Liu, Linfeng Zhang",
+            links: {
+                github: "https://github.com/fakerone-li/SkipVAR.git",
+                arxiv: "https://arxiv.org/abs/2506.00001"
+            },
+            content: [
+                {
+                    type: "image",
+                    title: "Qualitative Results of Decision Model on 8B",
+                    src: "./Images/figure-1.png",
+                    alt: "Generated image comparison (Decision Model on 8B)",
+                    description: "This figure shows the generation results of the decision model trained on 2B data when applied to the 8B dataset."
+                },
+                {
+                    type: "text",
+                    title: "Abstract",
+                    content: "Recent studies on Visual Autoregressive (VAR) models have highlighted that high-frequency components, or later steps, in the generation process contribute disproportionately to inference latency.  However, the underlying computational redundancy involved in these steps has yet to be thoroughly investigated. In this paper, we conduct an in-depth analysis of the VAR inference process and identify two primary sources of inefficiency: \textit{\textbf{step redundancy}} and \textit{\textbf{unconditional branch redundancy}}. To address step redundancy, we propose an automatic step-skipping strategy that selectively omits unnecessary generation steps to improve efficiency.For unconditional branch redundancy, we observe that the information gap between the conditional and unconditional branches is minimal.Leveraging this insight, we introduce unconditional branch replacement, a technique that bypasses the unconditional branch to reduce computational cost. Notably, we observe that the effectiveness of acceleration strategies varies significantly across different samples. Motivated by this, we propose \textbf{SkipVAR}, a sample-adaptive framework that leverages frequency information to dynamically select the most suitable acceleration strategy for each instance. To systematically evaluate the importance of high-frequency information, we further introduce a suite of high-variation benchmark datasets that expose models' sensitivity to fine details. Extensive experiments demonstrate that SkipVAR achieves an average SSIM above 0.88 while providing a $1.81\times$ overall acceleration, and achieves up to $2.62\times$ speedup while maintaining model performance on the GenEval benchmark, by applying our acceleration strategies alone. These results demonstrate the effectiveness of frequency-aware, training-free adaptive acceleration for scalable autoregressive image generation. "
+                },
+                {
+                    type: "image",
+                    title: "SkipVAR Model Pipeline",
+                    src: "./Images/figure-2.png", 
+                    alt: "SkipVAR framework overview",
+                    description: "Overview and detailed pipeline of SkipVAR’s frequency-aware acceleration framework."
+                },
+                {
+                    type: "image-group",
+                    title: "Generated Samples",
+                    images: [
+                        {
+                            src: "./Images/woman.png",
+                            alt: "Woman Samples",
+                            description: "A collection of various styles of women's portraits, demonstrating excellent results across different levels of detail complexity."
+                        },
+                        {
+                            src: "./Images/man.png",
+                            alt: "Man Samples",
+                            description: "A collection of portraits and close-up photos of men, showing high-quality results without losing details, whether in portraits or realistic headshots."
+                        },
+                        {
+                            src: "./Images/animals.png",
+                            alt: "Animals Samples",
+                            description: "A collection of animal images in various styles, including abstract art, simple sketches, oil paintings, and woodblock prints, all with high quality."
+                        },
+                        {
+                            src: "./Images/complex.png",
+                            alt: "Complex Samples",
+                            description: "A showcase of highly detailed images, highlighting the ability of our method to maintain excellent quality even with complex details."
+                        },
+                        
+                    ]
+                },
+                {
+                    type: "text",
+                    title: "Experiments and Results",
+                    content: "We assess acceleration effects using SSIM and LPIPS under a fixed random seed for direct comparability to the Infinity baseline. On DrawBench, SkipVAR maintains SSIM above each model’s training threshold and outperforms token-based approaches like ToMe, SiTo, and FastVAR. For instance, ToMe@0.05_LastStepOnly—applying 5% token merging at the final step—yields SSIM < 0.81, while SkipVAR’s holistic acceleration better preserves global fidelity."
+                },
+                {
+                    type: "table",
+                    title: "Quantitative comparison on the DrawBench dataset. Note that ToMe and SiTo use the default ratio of {0.5, 0.5, 0.5}, while FastVAR is reproduced by us using official settings.",
+                    headers: ["Methods", "Speedup", "SSIM", "SSIM-HF", "LPIPS", "LPIPS-HF"],
+                    rows: [
+                        ["Infinity", "1.00×", "-", "-", "-", "-"],
+                        ["+SkipVAR@0.88", "1.58×", "0.9092", "0.3429", "0.0488", "0.1823"],
+                        ["+SkipVAR@0.86", "1.70×", "0.8924", "0.3100", "0.0577", "0.1925"],
+                        ["+SkipVAR@0.84", "1.81×", "0.8793", "0.2881", "0.0646", "0.1997"],
+                        ["+SkipVAR@0.84_HFDiffOnly", "1.72×", "0.8747", "0.2815", "0.0671", "0.2019"],
+                        ["+ToMe@0.05_LastStepOnly", "0.95×", "0.8067", "0.1913", "0.1043", "0.2376"],
+                        ["+ToMe", "1.18×", "0.6264", "0.1111", "0.3520", "0.4133"],
+                        ["+SiTo@0.05_LastStepOnly", "0.93×", "0.7927", "0.1816", "0.1092", "0.2412"],
+                        ["+SiTo", "1.15×", "0.6487", "0.1168", "0.2874", "0.3670"],
+                        ["+FastVAR@0.05_LastStepOnly", "1.02×", "0.8142", "0.1964", "0.0977", "0.2330"],
+                        ["+FastVAR", "2.53×", "0.6919", "0.1270", "0.2042", "0.3092"],
+                        ["+SkipVAR-hybrid (w/o DM)", "2.62×", "0.7915", "0.1829", "0.1075", "0.2385"]
+                    ]
+                    }
+
+                ,
+                {
+                    type: "image",
+                    title: "methods vs methods",
+                    src: "./Images/figure-3.png",
+                    alt: "figure-3.png",
+                    description: "SkipVAR achieves the best balance between generation quality and acceleration speed."
+                },
+                {
+                    type: "image",
+                    title: "Generated Samples Under Different Acceleration Strategies",
+                    src: "./Images/figure-4.png",
+                    alt: "Generated samples comparison",
+                    description: "This figure shows the generated samples using different acceleration methods, highlighting how SkipVAR achieves the best balance between generation quality and acceleration speed."
+                }
+            ]
+
+        };
+
+        // Carousel functionality
+        function startCarousel(carouselId) {
+            const carousel = document.getElementById(carouselId);
+            if (!carousel) return;
+            
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const indicators = carousel.querySelectorAll('.carousel-indicator');
+            const totalSlides = slides.length;
+            let currentSlide = 0;
+            let interval;
+            
+            // Set initial active slide
+            if (slides.length > 0) {
+                slides[0].classList.add('active');
+                indicators[0].classList.add('active');
+            }
+            
+            // Start carousel
+            function startInterval() {
+                interval = setInterval(() => {
+                    goToSlide((currentSlide + 1) % totalSlides);
+                }, 5000);
+            }
+            
+            startInterval();
+            
+            // Add event listeners to indicators
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    goToSlide(index);
+                    resetInterval();
+                });
+            });
+            
+            // Add event listeners to navigation buttons
+            const prevBtn = carousel.querySelector('.carousel-prev');
+            const nextBtn = carousel.querySelector('.carousel-next');
+            
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+                    resetInterval();
+                });
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    goToSlide((currentSlide + 1) % totalSlides);
+                    resetInterval();
+                });
+            }
+            
+            // Pause carousel on hover
+            carousel.addEventListener('mouseenter', () => {
+                clearInterval(interval);
+            });
+            
+            carousel.addEventListener('mouseleave', () => {
+                startInterval();
+            });
+            
+            function goToSlide(index) {
+                // Remove active class from all slides and indicators
+                slides.forEach(slide => slide.classList.remove('active'));
+                indicators.forEach(indicator => indicator.classList.remove('active'));
+                
+                // Add active class to the specified slide and indicator
+                slides[index].classList.add('active');
+                indicators[index].classList.add('active');
+                
+                // Update current slide and description
+                currentSlide = index;
+                updateDescription(carouselId, index);
+            }
+            
+            function resetInterval() {
+                clearInterval(interval);
+                startInterval();
+            }
+        }
+        
+        function updateDescription(carouselId, index) {
+            const carouselContainer = document.getElementById(carouselId).parentElement;
+            const descriptionElement = carouselContainer.querySelector('p.text-neutral-600.italic.text-center.mt-4');
+            const images = paperConfig.content.find(item => 
+                item.type === 'image-group' && 
+                document.getElementById(carouselId).parentElement.querySelector('h3').textContent === item.title
+            )?.images;
+            
+            if (descriptionElement && images && images[index]) {
+                descriptionElement.textContent = images[index].description;
+            }
+        }
+
+        // Render function
+        function renderPaper() {
+            // Set title and author information
+            document.getElementById('paper-title').textContent = paperConfig.title;
+            document.getElementById('paper-authors').textContent = paperConfig.authors;
+            
+            // Set links
+            document.getElementById('github-link').href = paperConfig.links.github;
+            document.getElementById('arxiv-link').href = paperConfig.links.arxiv;
+            
+            // Render content
+            const contentContainer = document.getElementById('content-container');
+            contentContainer.innerHTML = '';
+            
+            paperConfig.content.forEach((item, index) => {
+                const section = document.createElement('section');
+                section.className = 'animate-fade-in';
+                section.style.animationDelay = `${index * 0.1}s`;
+                
+                // Add light background to Abstract section
+                if (item.title === 'Abstract') {
+                    section.classList.add('bg-neutral-100', 'p-8', 'rounded-2xl');
+                }
+                
+                if (item.type === 'text') {
+                    section.innerHTML = `
+                        <div class="prose prose-xl max-w-none mx-auto">
+                            <h2 class="text-3xl md:text-4xl font-bold text-center text-primary mb-8 font-sans">${item.title}</h2>
+                            <p class="text-neutral-700 leading-relaxed text-lg font-inter">${item.content}</p>
+                        </div>
+                    `;
+                } else if (item.type === 'image') {
+                    section.innerHTML = `
+                        <div class="mx-auto">
+                            <div class="relative rounded-xl overflow-hidden mb-4">
+                                <img 
+                                    src="${item.src}" 
+                                    alt="${item.alt}" 
+                                    class="w-full h-auto object-cover"
+                                >
+                            </div>
+                            <p class="text-neutral-600 italic text-center font-inter">${item.description}</p>
+                        </div>
+                    `;
+                } else if (item.type === 'image-group') {
+                    // Create carousel container
+                    const carouselId = `carousel-${index}`;
+                    section.innerHTML = `
+                        <div class="mb-10 mx-auto">
+                            <h3 class="text-xl font-semibold text-neutral-800 mb-6 font-sans">${item.title}</h3>
+                            <div id="${carouselId}" class="carousel-container relative rounded-xl overflow-hidden">
+                                <div class="carousel-slides relative h-[535px] md:h-[800px]">
+                                    ${item.images.map((img, i) => `
+                                        <div class="carousel-slide ${i === 0 ? 'active' : ''}">
+                                            <img 
+                                                src="${img.src}" 
+                                                alt="${img.alt}" 
+                                                class="w-full h-full object-cover"
+                                            >
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                <!-- Carousel controls -->
+                                <button class="carousel-prev absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300 z-10">
+                                    <i class="fa fa-chevron-left"></i>
+                                </button>
+                                <button class="carousel-next absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300 z-10">
+                                    <i class="fa fa-chevron-right"></i>
+                                </button>
+                                <!-- Carousel indicators -->
+                                <div class="carousel-indicators absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                                    ${item.images.map((_, i) => `
+                                        <div class="carousel-indicator ${i === 0 ? 'active' : ''}"></div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                            <p class="text-neutral-600 italic text-center mt-4 font-inter">${item.images[0].description}</p>
+                        </div>
+                    `;
+                } else if (item.type === 'table') {
+                    section.innerHTML = `
+                        <div class="mb-10 mx-auto max-w-6xl">
+                            <h3 class="text-xl font-semibold text-neutral-800 mb-6 font-sans">${item.title}</h3>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full border border-neutral-300 text-left text-sm font-inter">
+                                    <thead class="bg-neutral-100">
+                                        <tr>
+                                            ${item.headers.map(header => `
+                                                <th class="border border-neutral-300 px-4 py-2 font-semibold text-neutral-700">${header}</th>
+                                            `).join('')}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${item.rows.map(row => `
+                                            <tr>
+                                                ${row.map(cell => `
+                                                    <td class="border border-neutral-300 px-4 py-2">${cell}</td>
+                                                `).join('')}
+                                            </tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                contentContainer.appendChild(section);
+            });
+            
+            // Initialize carousels
+            const carouselContainers = document.querySelectorAll('.carousel-container');
+            carouselContainers.forEach(container => {
+                startCarousel(container.id);
+            });
+        }
+
+        // Render after page loads
+        document.addEventListener('DOMContentLoaded', renderPaper);
+    </script>
+</body>
+</html>
