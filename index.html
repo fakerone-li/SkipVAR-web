@@ -98,10 +98,14 @@
                 Advances in Deep Learning for Natural Language Processing
             </h1>
             <div id="paper-authors" class="text-xl text-neutral-600 mb-3 font-sans">
-                Zhang San<sup>1</sup>, Li Si<sup>2</sup>, Wang Wu<sup>1,3</sup>
+                 Jiajun Li<sup>1,5</sup><sup>*</sup>, Yue Ma<sup>2*</sup>, Xinyu Zhang<sup>1</sup>, Qingyan Wei<sup>3</sup>, Songhua Liu<sup>4,5†</sup>, Linfeng Zhang<sup>5†</sup>
             </div>
             <div class="text-neutral-500 text-sm mb-8 font-sans">
-                <sup>1</sup>University of Technology, <sup>2</sup>Academy of Sciences, <sup>3</sup>AI Research Center
+                <sup>1</sup>University of Electronic Science and Technology of China, 
+                <sup>2</sup>The Hong Kong University of Science and Technology, 
+                <sup>3</sup>Central South University, 
+                <sup>4</sup>National University of Singapore, 
+                <sup>5</sup>Shanghai Jiaotong University
             </div>
             
             <div class="flex justify-center space-x-6 text-base">
@@ -137,7 +141,7 @@
         // Configuration data
         const paperConfig = {
             title: "SkipVAR: Accelerating Visual Autoregressive Modeling via Adaptive Frequency-Aware Skipping",
-            authors: "Jiajun Li, Yue Ma, Xinyu Zhang, Qingyan Wei, Songhua Liu, Linfeng Zhang",
+            //authors: "Jiajun Li, Yue Ma, Xinyu Zhang, Qingyan Wei, Songhua Liu, Linfeng Zhang",
             links: {
                 github: "https://github.com/fakerone-li/SkipVAR.git",
                 arxiv: "https://arxiv.org/abs/2506.08908"
@@ -331,7 +335,7 @@
         function renderPaper() {
             // Set title and author information
             document.getElementById('paper-title').textContent = paperConfig.title;
-            document.getElementById('paper-authors').textContent = paperConfig.authors;
+            //document.getElementById('paper-authors').textContent = paperConfig.authors;
             
             // Set links
             document.getElementById('github-link').href = paperConfig.links.github;
